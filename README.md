@@ -7,6 +7,7 @@
 使用了Mob.com 官方最新的4.1.3 sharesdk 。需要先注册登录获取appkey。
 
 参考了：3q
+
 [Luomusha](https://github.com/Luomusha/cordova-plugin-sharesdk)  （具有授权登录功能）
 [kuaimacode](https://github.com/kuaimacode/cordova-plugin-sharesdk)（此插件有会报错，但是具有最新的一键登录功能，修改后可用）
 
@@ -18,6 +19,11 @@ ionic cordova plugin add "git-url或者下载到本地路径安装" --save --var
 ```
 
 # 使用
+typescript 项目中需要，以便编译通过：
+```
+//declare let cordova: any;
+declare let ShareSDKPlugin: any;
+```
 ## 分享
 ```js
 function share() {
