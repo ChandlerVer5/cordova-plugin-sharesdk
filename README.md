@@ -1,9 +1,10 @@
  
 # 介绍
  Cordova qq，wechat，weibo插件，可以在ionic1/2/3项目中使用。
+ 关于[Cordova插件开发指南的官方最新翻译](https://www.kancloud.cn/chandler/angular/683995)
 
 # 基础
-使用了Mob.cn 官方最新的4.1.3 sharesdk 。需要先注册登录获取appkey。
+使用了Mob.com 官方最新的4.1.3 sharesdk 。需要先注册登录获取appkey。
 
 参考了：3q
 [Luomusha](https://github.com/Luomusha/cordova-plugin-sharesdk)  （具有授权登录功能）
