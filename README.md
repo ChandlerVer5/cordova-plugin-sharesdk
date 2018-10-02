@@ -1,10 +1,10 @@
  
 # 介绍
- Cordova qq，wechat，weibo插件，可以在ionic1/2/3项目中使用。
- 关于[Cordova插件开发指南的官方最新翻译](https://www.kancloud.cn/chandler/angular/683995)
+Mob Cordova版本 的 qq，wechat，weibo 分享插件。
 
 # 基础
 使用了Mob.com 官方最新的4.1.3 sharesdk 。需要先注册登录获取appkey。
+！使用gradle集成引用，未使用jar包集成！
 
 参考了：
 
@@ -21,8 +21,8 @@ ionic cordova plugin add "git-url或者下载到本地路径安装" --save --var
 # 使用
 typescript 项目中需要，以便编译通过：
 ```
-//declare let cordova: any;
-declare let ShareSDKPlugin: any;
+declare let cordova: any;
+declare let cordova.plugins.ShareSDKPlugin: any;
 ```
 ## 分享
 ```js
@@ -39,7 +39,7 @@ function share() {
         var error = function(result){
             console.log('share error!!',JSON.stringify(result))
         };
-	    ShareSDKPlugin.share(success,error,param);
+	    cordova.plugins.ShareSDKPlugin.share(success,error,param);
 }
 ```
 |参数|说明|
@@ -65,7 +65,7 @@ function auth() {
             console.log('auth error!!',JSON.stringify(result))
         }
         var platform  = 'QQ'//QQ/Sina/Wechat
-        ShareSDKPlugin.auth(success,error,platform );
+        cordova.plugins.ShareSDKPlugin.auth(success,error,platform );
 }
 
 ```
@@ -88,7 +88,7 @@ function login() {
             console.log('login error',JSON.stringify(result));
         }
         var platform  = 'QQ'//QQ/Sina/Wechat
-        ShareSDKPlugin.login(success,error,platform );
+        cordova.plugins.ShareSDKPlugin.login(success,error,platform );
 }
 ```
 |参数|说明|
@@ -101,7 +101,7 @@ function login() {
 ```js
 function logout() {
         var platform  = 'QQ'//QQ/Sina/Wechat
-        ShareSDKPlugin.logout(platform );
+        cordova.plugins.ShareSDKPlugin.logout(platform );
 }
 ```
 

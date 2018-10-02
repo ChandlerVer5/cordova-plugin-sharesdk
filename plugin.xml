@@ -5,8 +5,8 @@
     <description>ShareSDKPlugin</description>
     <!-- add this to your config.xml -->
     <!-- <preference name="WECHATAPPID" value="YOUR_WECHAT_APP_ID_HERE" /> -->
-    <preference name="Mob_AppKey"/>
-    <preference name="Mob_AppSecret"/>
+    <preference name="MOB_APPKEY"/>
+    <preference name="MOB_APPSECRET"/>
     <preference name="WECHATAPPID"/>
     <preference name="WECHATAPPID"/>
     <preference name="WECHATAPPSECRET"/>
@@ -24,14 +24,14 @@
         <engine name="cordova" version=">=3.5.0"/>
     </engines>
     <js-module src="www/ShareSDKPlugin.js" name="ShareSDKPlugin">
-        <clobbers target="ShareSDKPlugin"/>
+         <clobbers target="cordova.plugins.ShareSDKPlugin"/>
     </js-module>
     <platform name="android">
         <hook type="after_plugin_install" src="scripts/android/android_after_plugin_install.js"/>
         <hook type="before_prepare" src="scripts/android/android_after_plugin_install.js"/>
         <config-file target="config.xml" parent="/*">
             <feature name="ShareSDKPlugin">
-                <param name="android-package" value="ma.kuai.magicican.sharesdk.ShareSDKPlugin"/>
+                <param name="android-package" value="com.wjipet.sharesdk.ShareSDKPlugin"/>
             </feature>
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/*">
@@ -54,7 +54,7 @@
      </config-file>
 
         <!-- Plugin Source -->
-        <source-file src="src/android/ShareSDKPlugin.java" target-dir="src/ma/kuai/magicican/sharesdk"/>
+        <source-file src="src/android/ShareSDKPlugin.java" target-dir="src/com/wjipet/sharesdk"/>
 
 <!-- ShareSDK Config Xml -->
         <source-file src="src/android/ShareSDK/assets/ShareSDK.xml" target-dir="assets"/>
@@ -167,8 +167,7 @@
         </config-file>
 
 
-<config-file target="AndroidManifest.xml" parent="/manifest/application">
-
+  <config-file target="AndroidManifest.xml" parent="/manifest/application">
 
             <activity
                     android:name="com.mob.tools.MobUIShell"
@@ -176,24 +175,27 @@
                     android:screenOrientation="portrait"
                     android:theme="@android:style/Theme.Translucent.NoTitleBar"
                     android:windowSoftInputMode="stateHidden|adjustResize">
-                <!-- QQ和QQ空间分享 QQ登录的回调必须要配置的 -->
-                <intent-filter>
-                    <data android:scheme="tencent$QQAPPID_ANDROID"/>
-                    <action android:name="android.intent.action.VIEW"/>
+               <!-- 调用新浪原生SDK，需要注册的回调activity -->
+              <intent-filter>
+                  <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+                  <category android:name="android.intent.category.DEFAULT" />
+              </intent-filter>
+            </activity>
 
-                    <category android:name="android.intent.category.BROWSABLE"/>
-                    <category android:name="android.intent.category.DEFAULT"/>
-                </intent-filter>
-
-                <!-- 新浪微博客户端分享回调必须配置 -->
-                <intent-filter>
-                    <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY"/>
-                    <category android:name="android.intent.category.DEFAULT"/>
-                </intent-filter>
+            <activity
+                 android:name="cn.sharesdk.tencent.qq.ReceiveActivity"
+                 android:launchMode="singleTask"
+                 android:noHistory="true">
+                 <intent-filter>
+                      <data android:scheme="tencent$QQAPPID_ANDROID"/>
+                      <action android:name="android.intent.action.VIEW" />
+                      <category android:name="android.intent.category.DEFAULT" />
+                      <category android:name="android.intent.category.BROWSABLE" />
+                 </intent-filter>
             </activity>
             <!--微信分享回调 -->
             <!-- **************** 如果有使用微信支付插件，请注释掉下面的代码 **************-->
-            <activity
+              <activity
                     android:name=".wxapi.WXEntryActivity"
                     android:configChanges="keyboardHidden|orientation|screenSize"
                     android:exported="true"
@@ -201,11 +203,15 @@
                     android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
             <!-- **************** 如果有使用微信支付插件，请注释掉上面的代码 **************-->
             
-        <!-- 填写您从Mob开发者后台中得到的Appkey和AppSecret -->
-        <meta-data android:name="Mob-AppKey" android:value="$Mob_AppKey"/>
-        <meta-data android:name="Mob-AppSecret" android:value="$Mob_AppSecret"/>
+        <activity android:name=".activitys.SharePlatformTypeActivity"></activity>
+        <activity android:name=".activitys.ShowUserInfoActivity"></activity>
 
-        </config-file>
+
+        <!-- 填写您从Mob开发者后台中得到的Appkey和AppSecret -->
+        <meta-data android:name="Mob-AppKey" android:value="$MOB_APPKEY"/>
+        <meta-data android:name="Mob-AppSecret" android:value="$MOB_APPSECRET"/>
+
+   </config-file>
 
         <!-- ShareSDK Libs -->
         <lib-file src="src/android/ShareSDK/libs/MobCommons-2018.0614.1541.jar"/>
@@ -337,7 +343,7 @@
             <feature name="ShareSDKPlugin">
                 <param name="ios-package" value="ShareSDKPlugin"/>
             </feature>
-            <preference name="SHARESDKAPPKEY" value="$Mob_AppKey"/>
+            <preference name="SHARESDKAPPKEY" value="$MOB_APPKEY"/>
             <preference name="WECHATAPPID" value="$WECHATAPPID"/>
             <preference name="WECHATAPPSECRET" value="$WECHATAPPSECRET"/>
             <preference name="QQAPPID_IOS" value="$QQAPPID_IOS"/>
@@ -433,10 +439,10 @@
         </config-file>
 		<!-- 填写您从Mob开发者后台中得到的Appkey和AppSecret -->
 		<config-file target="*-Info.plist" parent="MOBAppKey">
-			<string>$Mob_AppKey</string>
+			<string>$MOB_APPKEY</string>
 		</config-file>
 		<config-file target="*-Info.plist" parent="MOBAppSecret">
-			<string>$Mob_AppSecret</string>
+			<string>$MOB_APPSECRET</string>
 		</config-file>
 
         <header-file src="src/ios/ShareSDKPlugin.h"/>

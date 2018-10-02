@@ -1,4 +1,4 @@
-package ma.kuai.magicican.sharesdk;
+package com.wjipet.sharesdk;
 
 import android.app.Activity;
 import android.content.pm.ApplicationInfo;

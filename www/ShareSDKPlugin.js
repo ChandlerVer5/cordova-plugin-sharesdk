@@ -1,10 +1,11 @@
+var exec = require('cordova/exec');
 var pluginName = "ShareSDKPlugin";
 var ShareSDKPlugin = {
 };
 
 
 ShareSDKPlugin.logout = function (successCallback, errorCallback, params) {
-    cordova.exec(successCallback, errorCallback, pluginName, "logout", [params]);
+    exec(successCallback, errorCallback, pluginName, "logout", [params]);
 };
 //一键分享
 ShareSDKPlugin.share = function (successCallback,errorCallback,params) {
@@ -14,14 +15,14 @@ ShareSDKPlugin.share = function (successCallback,errorCallback,params) {
     }else{
         result = [params]
     }
-    cordova.exec(successCallback, errorCallback, pluginName, "share", result);
+    exec(successCallback, errorCallback, pluginName, "share", result);
 };
 //获取用户信息
 ShareSDKPlugin.login = function (successCallback, errorCallback, params) {
-    cordova.exec(successCallback, errorCallback, pluginName, "login", [params]);
+    exec(successCallback, errorCallback, pluginName, "login", [params]);
 };
 //用户授权
 ShareSDKPlugin.auth = function (successCallback, errorCallback, params) {
-    cordova.exec(successCallback, errorCallback, pluginName, "auth", [params]);
+    exec(successCallback, errorCallback, pluginName, "auth", [params]);
 };
 module.exports = ShareSDKPlugin;

@@ -1,14 +1,16 @@
 {
   "name": "cordova-plugin-sharesdk",
+  "author": "ChandlerVer5",
+  "license": "MIT",
   "description": "A cordova plugin for shareadk",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kuaimacode/cordova-plugin-sharesdk.git"
+    "url": "git+https://github.com/ChandlerVer5/cordova-plugin-sharesdk.git"
   },
   "keywords": [
     "cordova",
@@ -17,10 +19,8 @@
     "sharesdk",
     "share"
   ],
-  "author": "Kuaima",
-  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kuaimacode/cordova-plugin-sharesdk/issues"
+    "url": "https://github.com/ChandlerVer5/cordova-plugin-sharesdk/issues"
   },
-  "homepage": "https://github.com/kuaimacode/cordova-plugin-sharesdk#readme"
+  "homepage": "https://github.com/ChandlerVer5/cordova-plugin-sharesdk#readme"
 }
